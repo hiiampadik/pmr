@@ -1,0 +1,38 @@
+@import "_variables.scss";
+
+
+
+.navLogo{
+  position: fixed;
+  top: $lh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.navBg {
+  position: fixed;
+  z-index: 110;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: 1s;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  background-color: #009ed9;
+  animation: hue 5s infinite;
+}
+
+.nav:hover{
+  .navBg{
+    opacity: 1;
+  }
+}
+
+@keyframes hue {
+  0% {filter: hue-rotate(0deg);}
+  100% {filter: hue-rotate(360deg);}
+}
