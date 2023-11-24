@@ -1,7 +1,7 @@
 import styles from "../styles/TopMenu.module.scss";
 import React, { useState } from "react";
 import logo from '../public/logo.svg'
-import Figure from "@/components/Figure";
+import Figure from "../components/Figure";
 
 export default function TopMenu(props) {
 

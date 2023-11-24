@@ -1,11 +1,8 @@
 import Layout from "../components/Layout";
-import { useRouter } from "next/router";
-import React, { useEffect, useState, useRef } from "react";
-import Link from "next/link";
+import React from "react";
+import client from "../client";
 
-export default function Home({projects}) {
-  const router = useRouter();
-
+export default function Home({sounds}) {
 
   return (
     <Layout>
@@ -13,4 +10,21 @@ export default function Home({projects}) {
 
     </Layout>
   );
+}
+
+
+
+export async function getStaticProps(context) {
+  // It's important to default the slug so that it doesn't return "undefined"
+
+  const about = await client.fetch(
+      `*[_type == 'sounds'][0]`
+  );
+
+  return {
+    props: {
+      about,
+    },
+    revalidate: 10,
+  };
 }
