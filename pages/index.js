@@ -6,16 +6,14 @@ import useSound from "use-sound";
 
 export default function Home({data, soundtrack}) {
 
-
     const [play] = useSound(soundtrack.file);
-
 
   return (
     <Layout handleClick={() => play()}>
       <ul className={styles.listContainer}>
         {data?.sounds.map((sound, index) => {
           return (
-              <Line key={index} sound={sound}/>
+              <Line key={index} index={index} sound={sound}/>
           )
         })}
       </ul>
@@ -61,13 +59,15 @@ export async function getStaticProps(context) {
   };
 }
 
-export function Line({sound}) {
+export function Line({sound, index}) {
 
     const [play] = useSound(sound.url);
 
     return (
         <li>
-            <div className={styles.play} onClick={play}>
+            <audio id={index} src={sound.url}/>
+
+            <div className={styles.play} onClick={() => document.getElementById(index).play()}>
             </div>
             <div className={styles.author}>
                 {sound.author === 'other' && '-'}
