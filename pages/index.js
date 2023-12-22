@@ -2,14 +2,12 @@ import Layout from "../components/Layout";
 import React from "react";
 import client from "../client";
 import styles from '../styles/List.module.scss'
-import useSound from "use-sound";
 
 export default function Home({data, soundtrack}) {
 
-    const [play] = useSound(soundtrack.file);
-
   return (
-    <Layout handleClick={() => play()}>
+    <Layout handleClick={() => document.getElementById('soundtrack').play()}>
+        <audio id={'soundtrack'} src={soundtrack.file}/>
       <ul className={styles.listContainer}>
         {data?.sounds.map((sound, index) => {
           return (
@@ -60,8 +58,6 @@ export async function getStaticProps(context) {
 }
 
 export function Line({sound, index}) {
-
-    const [play] = useSound(sound.url);
 
     return (
         <li>
