@@ -1,6 +1,6 @@
 import styles from "../styles/TopMenu.module.scss";
 import React from "react";
-import logo from '../public/logo.svg'
+import logo from '../public/2.svg'
 import Figure from "../components/Figure";
 
 export default function TopMenu(props) {
@@ -10,7 +10,7 @@ export default function TopMenu(props) {
           <Figure
               image={logo}
               alt={"Logo"}
-              height={"200"}
+              height={"100"}
               className={styles.navLogo}
               handleClick={() => props.handleClick()}
           />
