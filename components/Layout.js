@@ -5,6 +5,7 @@ import Head from "next/head";
 
 export default function Layout({ 
   title = 'Pimp Maj Rajt',
+  handleClick,
   children 
 }) {
   
@@ -19,7 +20,7 @@ export default function Layout({
         />
         <link rel="stylesheet" href="https://use.typekit.net/ynq5zhh.css" />
       </Head>
-      <TopMenu />
+      <TopMenu handleClick={() => handleClick()}/>
       <main>{children}</main>
     </>
   );

@@ -4,10 +4,14 @@ import client from "../client";
 import styles from '../styles/List.module.scss'
 import useSound from "use-sound";
 
-export default function Home({data}) {
+export default function Home({data, soundtrack}) {
+
+
+    const [play] = useSound(soundtrack.file);
+
 
   return (
-    <Layout>
+    <Layout handleClick={() => play()}>
       <ul className={styles.listContainer}>
         {data?.sounds.map((sound, index) => {
           return (
@@ -38,9 +42,20 @@ export async function getStaticProps(context) {
         ""
     );
 
+    const soundtrack = await client.fetch(
+        `
+        *[_type == 'about'][0]
+        {
+            "file": file.asset->url
+        }
+      `,
+        ""
+    );
+
   return {
     props: {
       data,
+        soundtrack
     },
     revalidate: 10,
   };
