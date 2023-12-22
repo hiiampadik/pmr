@@ -10,8 +10,7 @@ export default function TopMenu(props) {
       <Figure
           image={logo}
           alt={"Logo"}
-          width={"300"}
-          height={""}
+          height={"200"}
           className={styles.navLogo}
       />
         <div className={styles.navBg}></div>

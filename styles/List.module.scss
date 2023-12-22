@@ -1,0 +1,61 @@
+@import "_variables.scss";
+
+.listContainer {
+  padding: $lh;
+  width: 100vw;
+  max-width: 600px;
+  margin: 0 auto;
+  li {
+    font-size: 18px;
+    line-height: 22px;
+    list-style: none;
+    padding: 5px 20px 0 7px;
+    border-radius: 5px 5px 0 0 ;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #ff462e;
+    //background-color: #e8e8e8;
+    margin-bottom: 10px;
+
+    border: 1.5px #ff462e solid;
+    border-bottom: none;
+
+    .play{
+      width: 40px;
+      height: 40px;
+      //border: 1.5px #ff462e solid;
+      background-color: #ff462e;
+      border-radius: 50%;
+      flex: 0 0 auto;
+
+      background-image: url("../public/play.svg");
+      background-position: center center;
+      background-size: 60%;
+      background-repeat: no-repeat;
+
+      cursor: pointer;
+
+      @media (hover: hover) {
+        &:hover {
+          background-color: #e73e29;
+        }
+      }
+    }
+
+    .author{
+      flex: 0 0 60px;
+    }
+
+    .caption{
+      overflow: hidden;
+      display: flex;
+    }
+
+    &.playing{
+      background-color: #ff462e;
+      color: #e8e8e8;
+    }
+  }
+}
