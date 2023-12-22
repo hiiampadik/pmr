@@ -54,7 +54,11 @@ export function Line({sound}) {
         <li>
             <div className={styles.play} onClick={play}>
             </div>
-            <div className={styles.author}>{sound.author}</div>
+            <div className={styles.author}>
+                {sound.author === 'other' && '-'}
+                {sound.author === 'hanak' && 'Hanák'}
+                {sound.author === 'xzibit' && 'XZibit'}
+            </div>
             <div className={styles.caption}>{sound.caption}</div>
         </li>
     )
