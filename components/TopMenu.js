@@ -7,14 +7,13 @@ export default function TopMenu(props) {
 
   return (
     <nav className={styles.nav}>
-        <div onClick={() => props.handleClick()}>
-              <Figure
-                  image={logo}
-                  alt={"Logo"}
-                  height={"200"}
-                  className={styles.navLogo}
-              />
-        </div>
+          <Figure
+              image={logo}
+              alt={"Logo"}
+              height={"200"}
+              className={styles.navLogo}
+              handleClick={() => props.handleClick()}
+          />
 
         <div className={styles.navBg}></div>
     </nav>

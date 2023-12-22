@@ -24,6 +24,7 @@ export default function Figure(props) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
+        onClick={() => props.handleClick()}
       className={props.className}
       width={getWidth()}
       height={getHeight()}
