@@ -1,8 +1,7 @@
 import Layout from "../components/Layout";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import client from "../client";
 import styles from '../styles/List.module.scss'
-import {useLocalStorage} from "usehooks-ts";
 import ReactGA from 'react-ga';
 
 export default function Home({data, soundtrack}) {
@@ -18,7 +17,18 @@ export default function Home({data, soundtrack}) {
 
  function List ({data, soundtrack}) {
      const [playing, setPlaying] = useState(undefined)
-     const [stats, setStats] = useLocalStorage('stats', undefined)
+     const [stats, setStats] = useState(undefined);
+
+     useEffect(() => {
+         const statsData = JSON.parse(localStorage.getItem("stats"));
+         if (statsData) {
+             setStats(statsData);
+         } else {
+             setStats(new Array(data.sounds.length).fill(0))
+         }
+
+     }, [data.sounds]);
+
 
      const increaseStats = (index) => {
          let newStats;
@@ -30,6 +40,8 @@ export default function Home({data, soundtrack}) {
 
          newStats[index] += 1;
          setStats(newStats);
+
+         localStorage.setItem("stats", JSON.stringify(stats));
      }
 
      const handleClick = (index) => {

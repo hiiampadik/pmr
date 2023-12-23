@@ -14,8 +14,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-ga": "^3.3.1",
-    "sass": "^1.69.5",
-    "usehooks-ts": "^2.9.1"
+    "sass": "^1.69.5"
   },
   "devDependencies": {
     "eslint": "^8",
