@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import client from "../client";
-
+import ReactGA from 'react-ga';
 
 export default function About() {
 

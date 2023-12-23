@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import client from "../client";
 import styles from '../styles/List.module.scss'
 import {useLocalStorage} from "usehooks-ts";
+import ReactGA from 'react-ga';
 
 export default function Home({data, soundtrack}) {
 
@@ -17,7 +18,7 @@ export default function Home({data, soundtrack}) {
 
  function List ({data, soundtrack}) {
      const [playing, setPlaying] = useState(undefined)
-     const [stats, setStats] = useLocalStorage('stats', new Array(data?.sounds.length).fill(0))
+     const [stats, setStats] = useLocalStorage('stats', new Array(data.sounds.length).fill(0))
 
      const increaseStats = (index) => {
          let newStats = stats;
@@ -35,13 +36,20 @@ export default function Home({data, soundtrack}) {
          document.getElementById(index).play()
          setPlaying(index)
          increaseStats(index)
+
+         console.log()
+         ReactGA.event({
+             category: 'User',
+             action: 'play_sound',
+             value: `${data.sounds[index].caption}`
+         });
      }
 
      return (
          <Layout handleClick={() => document.getElementById('soundtrack').play()}>
              <audio id={'soundtrack'} src={soundtrack.file}/>
              <div className={styles.listContainer}>
-                 {data?.sounds.map((sound, index) => {
+                 {data.sounds.map((sound, index) => {
                      return (
                          <Item key={index} index={index} sound={sound} handleClick={handleClick} count={stats ? stats[index] : 0}/>
                      )
