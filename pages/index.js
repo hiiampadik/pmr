@@ -36,13 +36,12 @@ export default function Home({data, soundtrack}) {
 
      const increaseStats = (index) => {
          let newStats;
-         newStats = stats;
+         newStats = [...stats];
          newStats[index] += 1;
-         setStats(newStats);
+         setStats([...newStats]);
      }
 
      const handleClick = (index) => {
-         increaseStats(index)
 
          if (playing !== undefined){
              let playingAudioElement = document.getElementById(playing)
@@ -65,7 +64,10 @@ export default function Home({data, soundtrack}) {
              <div className={styles.listContainer}>
                  {data.sounds.map((sound, index) => {
                      return (
-                         <Item key={index} index={index} sound={sound} handleClick={handleClick} count={stats ? stats[index] : 0}/>
+                         <Item key={index} index={index} sound={sound} handleClick={(index) => {
+                             increaseStats(index)
+                             handleClick(index)
+                         }} count={stats ? stats[index] : 0}/>
                      )
                  })}
              </div>
