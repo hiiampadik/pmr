@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import client from "../client";
 
 
-export default function About(props) {
+export default function About() {
 
   return (
     <Layout title={"Info"}>
