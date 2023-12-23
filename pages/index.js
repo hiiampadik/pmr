@@ -6,42 +6,52 @@ import {useLocalStorage} from "usehooks-ts";
 
 export default function Home({data, soundtrack}) {
 
-    const [playing, setPlaying] = useState(undefined)
-    const [stats, setStats] = useLocalStorage('stats', new Array(data?.sounds.length).fill(0))
-
-    const increaseStats = (index) => {
-        let newStats = stats;
-        newStats[index] += 1;
-        setStats(newStats);
+    if (data === undefined || soundtrack === undefined){
+        return  <Layout></Layout>
     }
 
-    const handleClick = (index) => {
-        if (playing !== undefined){
-            let playingAudioElement = document.getElementById(playing)
-            playingAudioElement.pause();
-            playingAudioElement.currentTime = 0;
-        }
-
-        document.getElementById(index).play()
-        setPlaying(index)
-        increaseStats(index)
-    }
-
-  return (
-    <Layout handleClick={() => document.getElementById('soundtrack').play()}>
-        <audio id={'soundtrack'} src={soundtrack.file}/>
-        <div className={styles.listContainer}>
-            {data?.sounds.map((sound, index) => {
-              return (
-                  <Line key={index} index={index} sound={sound} handleClick={handleClick} count={stats ? stats[index] : 0}/>
-              )
-            })}
-        </div>
-    </Layout>
-  );
+    return (
+        <List data={data} soundtrack={soundtrack} />
+    );
 }
 
- function Line({sound, index, handleClick, count}) {
+ function List ({data, soundtrack}) {
+     const [playing, setPlaying] = useState(undefined)
+     const [stats, setStats] = useLocalStorage('stats', new Array(data?.sounds.length).fill(0))
+
+     const increaseStats = (index) => {
+         let newStats = stats;
+         newStats[index] += 1;
+         setStats(newStats);
+     }
+
+     const handleClick = (index) => {
+         if (playing !== undefined){
+             let playingAudioElement = document.getElementById(playing)
+             playingAudioElement.pause();
+             playingAudioElement.currentTime = 0;
+         }
+
+         document.getElementById(index).play()
+         setPlaying(index)
+         increaseStats(index)
+     }
+
+     return (
+         <Layout handleClick={() => document.getElementById('soundtrack').play()}>
+             <audio id={'soundtrack'} src={soundtrack.file}/>
+             <div className={styles.listContainer}>
+                 {data?.sounds.map((sound, index) => {
+                     return (
+                         <Item key={index} index={index} sound={sound} handleClick={handleClick} count={stats ? stats[index] : 0}/>
+                     )
+                 })}
+             </div>
+         </Layout>
+     );
+ }
+
+ function Item ({sound, index, handleClick, count}) {
 
     return (
         <div className={styles.item} onClick={() => handleClick(index)}>
