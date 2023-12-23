@@ -13,10 +13,6 @@ body {
   text-rendering: optimizeLegibility;
   line-height: 1.38;
   /* font-smoothing: antialiased; */
-
-  @media only screen and (max-width: $breakpoint-mobile-max) {
-    font-size: 16px;  
-  }
   
   background-color: #fdfdfd;
   color: #000000;

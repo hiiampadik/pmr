@@ -9,14 +9,15 @@
 .navLogo{
   cursor: pointer;
   position: fixed;
-  top: $lh * 1.5;
-  right: $lh * 1.5;
+  top: $lh * 0.7;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 50%;
-  border: 1.5px #ff462e solid;
+  border: 1px #ff462e solid;
   background: white;
-  height: 150px;
-  width: 150px;
-
+  height: 100px;
+  width: 160px;
+  z-index: 100;
 }
 
 .navBg {
