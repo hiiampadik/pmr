@@ -57,6 +57,18 @@
       align-items: center;
       justify-content: center;
     }
+
+    .play {
+      position: absolute;
+      right: 2px;
+      bottom: 2px;
+      background-image: url('../public/play.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 28px;
+      height: 28px;
+    }
+
   }
 
   @media (hover: hover) {

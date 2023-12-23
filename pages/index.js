@@ -5,6 +5,9 @@ import styles from '../styles/List.module.scss'
 import {useLocalStorage} from "usehooks-ts";
 import ReactGA from 'react-ga';
 
+const isServer = typeof window === 'undefined';
+
+
 export default function Home({data, soundtrack}) {
 
     if (data === undefined || soundtrack === undefined){
@@ -18,10 +21,16 @@ export default function Home({data, soundtrack}) {
 
  function List ({data, soundtrack}) {
      const [playing, setPlaying] = useState(undefined)
-     const [stats, setStats] = useLocalStorage('stats', new Array(data.sounds.length).fill(0))
+     const [stats, setStats] = useLocalStorage('stats', undefined)
 
      const increaseStats = (index) => {
-         let newStats = stats;
+         let newStats;
+         if (stats === undefined){
+             newStats = new Array(data.sounds.length).fill(0)
+         } else {
+             newStats = stats;
+         }
+
          newStats[index] += 1;
          setStats(newStats);
      }
@@ -65,10 +74,14 @@ export default function Home({data, soundtrack}) {
         <div className={styles.item} onClick={() => handleClick(index)}>
             <audio id={index} src={sound.url}/>
             <span className={styles.caption}>{sound.caption}</span>
-            {count !== 0 &&
-            <div className={styles.number}>
-                {count}
-            </div>
+            {count !== 0 ?
+                <div className={styles.number}>
+                    {count}
+                </div>
+                :
+                <div className={styles.play}>
+                </div>
+
             }
         </div>
     )
