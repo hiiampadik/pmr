@@ -29,22 +29,21 @@ export default function Home({data, soundtrack}) {
 
      }, [data.sounds]);
 
+     useEffect(() => {
+         localStorage.setItem("stats", JSON.stringify(stats));
+     }, [stats])
+
 
      const increaseStats = (index) => {
          let newStats;
-         if (stats === undefined){
-             newStats = new Array(data.sounds.length).fill(0)
-         } else {
-             newStats = stats;
-         }
-
+         newStats = stats;
          newStats[index] += 1;
          setStats(newStats);
-
-         localStorage.setItem("stats", JSON.stringify(stats));
      }
 
      const handleClick = (index) => {
+         increaseStats(index)
+
          if (playing !== undefined){
              let playingAudioElement = document.getElementById(playing)
              playingAudioElement.pause();
@@ -53,10 +52,8 @@ export default function Home({data, soundtrack}) {
 
          document.getElementById(index).play()
          setPlaying(index)
-         increaseStats(index)
 
-         console.log()
-         ReactGA.event({
+          ReactGA.event({
              category: 'User',
              action: `${data.sounds[index].caption}`,
          });
