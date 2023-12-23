@@ -5,9 +5,6 @@ import styles from '../styles/List.module.scss'
 import {useLocalStorage} from "usehooks-ts";
 import ReactGA from 'react-ga';
 
-const isServer = typeof window === 'undefined';
-
-
 export default function Home({data, soundtrack}) {
 
     if (data === undefined || soundtrack === undefined){
@@ -49,8 +46,7 @@ export default function Home({data, soundtrack}) {
          console.log()
          ReactGA.event({
              category: 'User',
-             action: 'play_sound',
-             value: `${data.sounds[index].caption}`
+             action: `${data.sounds[index].caption}`,
          });
      }
 
