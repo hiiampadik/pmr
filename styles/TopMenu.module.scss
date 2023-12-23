@@ -15,9 +15,11 @@
   border-radius: 50%;
   border: 1px #ff462e solid;
   background: white;
-  height: 100px;
-  width: 160px;
+  height: 120px;
+  width: 190px;
   z-index: 100;
+
+  animation: hue 15s infinite;
 }
 
 .navBg {
@@ -32,8 +34,8 @@
   transition: 1s;
   mix-blend-mode: difference;
   pointer-events: none;
-  background-color: #009ed9;
-  animation: hue 5s infinite;
+  background-color: #3ccdff;
+  animation: hue 15s infinite;
 }
 
 .nav:hover{

@@ -4,14 +4,13 @@
   padding: 30px;
   width: 100vw;
   max-width: 1000px;
-  margin: $lh * 7 auto 0;
+  margin: $lh * 6 auto 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 8px;
 
   @media only screen and (max-width: $breakpoint-smalltablet-max) {
     grid-template-columns: 1fr 1fr;
-    margin-top: $lh * 5;
   }
 
   @media only screen and (max-width: $breakpoint-mobile-max) {
@@ -37,6 +36,8 @@
     cursor: pointer;
     position: relative;
 
+    animation: hue 15s infinite;
+
     .caption{
       overflow: hidden;
       display: flex;
@@ -59,8 +60,14 @@
   }
 
   @media (hover: hover) {
-    li:hover {
-      //border: 1.5px #ff462e solid;
+    .item:hover {
+      transform: translate(-5px, -5px);
+      border-radius: 20px 0 0 0;
     }
   }
+}
+
+@keyframes hue {
+  0% {filter: hue-rotate(0deg);}
+  100% {filter: hue-rotate(360deg);}
 }
